@@ -1,5 +1,7 @@
 FROM golang:1.25-bookworm AS go-builder
 
+ENV GOTOOLCHAIN=auto
+
 RUN apt-get update && apt-get install -y \
     gcc libc6-dev git libsqlite3-dev ffmpeg \
     && rm -rf /var/lib/apt/lists/*
