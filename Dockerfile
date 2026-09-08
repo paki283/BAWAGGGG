@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get install -y \
     ffmpeg imagemagick curl sqlite3 libsqlite3-0 \
     nodejs npm \
+    python3 python3-pip \
     atomicparsley \
     ca-certificates libgomp1 megatools libwebp-dev webp \
     libwebpmux3 libwebpdemux2 libsndfile1 \
@@ -40,9 +41,9 @@ RUN ln -sf /usr/bin/nodejs /usr/local/bin/node
 RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp \
     && chmod a+rx /usr/local/bin/yt-dlp
 
-RUN pip3 install --no-cache-dir \
+RUN pip3 install --no-cache-dir --break-system-packages \
     torch torchaudio --index-url https://download.pytorch.org/whl/cpu \
-    && pip3 install --no-cache-dir \
+    && pip3 install --no-cache-dir --break-system-packages \
     fastapi uvicorn python-multipart requests \
     faster-whisper scipy gTTS playwright librosa
 
